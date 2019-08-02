@@ -1,0 +1,27 @@
+// Remove Focus Boxes
+select:focus {
+  outline: $select-focus;
+}
+
+button:focus {
+  outline: none;
+  background-color: $button-background-focus;
+}
+
+label {
+  font-size: $label-font-size;
+  color: $input-border-color;
+}
+
+// @import "~materialize-css/sass/components/forms/input-fields";
+@import 'input-fields'; // ~~ HACK
+
+@import '~materialize-css/sass/components/forms/radio-buttons';
+@import '~materialize-css/sass/components/forms/checkboxes';
+@import '~materialize-css/sass/components/forms/switches';
+
+@import '~materialize-css/sass/components/forms/select';
+// @import 'select'; // ~~ HACK
+@import '~materialize-css/sass/components/forms/file-input';
+@import '~materialize-css/sass/components/forms/range';
+
