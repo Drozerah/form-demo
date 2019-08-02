@@ -1,6 +1,15 @@
-@import "~materialize-css/sass/materialize.scss"; // Imports Webpack @{doc} https://tinyurl.com/yxjaswxw
-@import 'sass/colors';
+@charset "UTF-8";
+
+// Imports Webpack @{doc} https://tinyurl.com/yxjaswxw
+// @import "~materialize-css/sass/materialize.scss";
+
+// import app variables and overwrite Materialize default variables 
+@import 'sass/variables';
+// import Materialize default styles
+@import 'app/materialize-hacks/sass/vendor';
+// import footer drozerah styles
 @import 'sass/drozerah';
+
 
 html, body{
     margin: 0px;
@@ -17,16 +26,61 @@ body{
 }
 
 .wrapper{
+    width: 800px;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 25px 50px;
+    &::before{
+        content: "Drozerah freeCodeCamp Work";
+        display: inline-block;
+        width: 100%;
+        padding: 0 5px 5px 0;
+        text-align: right;
+    }
     h1{
         padding: 20px;
         border: 2px solid $primary;
-        box-shadow: 5px 6px 0px $primary;
+        box-shadow: 5px 6px 0 $primary;
         font-size: 2em;
-        color: inherit; 
+        color: inherit;
+        margin: 0;
     }
-    div{
-        text-align: center;
+    p{
+        margin: 50px 0 0 0;
     }
+    main{
+        background-color: #fff;
+    }
+}
+
+form{
+    padding: 20px;
+
+    .input-field{
+        width: inherit; // ~~ HACK
+        display: flex; // ~~ HACK
+        flex-direction: row; // ~~ HACK
+        justify-content: flex-start; // ~~ HACK    
+        div{
+          width: calc(100%/2);
+        }
+        & > label {
+            color: inherit; // ~~ HACK
+            width: calc(100%/2); // ~~ HACK
+            text-align: right; // ~~ HACK
+            padding-right: 20px; // ~~ HACK
+            transform: translateY(12px); // ~~ HACK
+            // background-color: lime;
+        }
+    }
+
+    button{
+        margin-top: 20px;
+    }
+}
+footer{
+    margin-top: 50px;
+    text-align: center;
 }
 
 
