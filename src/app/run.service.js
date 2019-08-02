@@ -1,15 +1,16 @@
 /**
  * MODULES
  */
-import { logger } from './utils/logger.service.js'
+import { submit } from './utils/form.submit.service.js'
+import { initSelect } from './utils/init.select.service.js'
 /**
  * Run the application
  */
 const run = () => {
 
-    const msg = 'Hello from logger.service.js!'
-    logger(msg)
-    
+    submit()
+    initSelect()
+
 }
 
 export { run }
