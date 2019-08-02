@@ -21,7 +21,7 @@ import "materialize-css/js/global"
 import "materialize-css/js/anime.min.js"
 // import "materialize-css/js/modal"
 import "materialize-css/js/waves"
-// import "materialize-css/js/forms"
+import "materialize-css/js/forms"
 
 // import "materialize-css/js/select"
 import "./app/materialize-hacks/js/select" //~~ HACK
@@ -33,7 +33,10 @@ import "./app/materialize-hacks/js/dropdown" //~~ HACK
 // import "materialize-css/js/buttons"
 // import "materialize-css/js/cards"
 // import "materialize-css/js/carousel"
+
 // import "materialize-css/js/characterCounter"
+import "./app/materialize-hacks/js/characterCounter" //~~ HACK
+
 // import "materialize-css/js/chips"
 // import "materialize-css/js/collapsible"
 // import "materialize-css/js/datepicker"
