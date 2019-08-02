@@ -1,0 +1,26 @@
+// Colors
+$bg: #E7E7E7;
+$primary: #00e0a5;
+
+// Overwrite Materialize styles
+
+/* Text input */
+
+// CSS template for modifying input fields border color
+// @{link} https://stackoverflow.com/a/56501028/9370788
+// @{link} https://stackoverflow.com/a/45880493/9370788
+
+// Styling for input field wrapper
+$input-focus-color: $primary; // ~~ HACK
+
+/* Style Placeholder */
+$placeholder-text-color: #737373; // ~~ HACK
+
+/* Dropdown */
+
+// Styling for input field select dropdown
+$dropdown-color: #737373; // ~~ HACK
+
+
+/* Styling for checkboxes & Radio buttons */
+$secondary-color: #737373;
