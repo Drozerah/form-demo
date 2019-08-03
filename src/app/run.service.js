@@ -1,17 +1,18 @@
 /**
  * MODULES
  */
-import { submit } from './utils/form.submit.service.js'
-import { initCharacterCounter } from './utils/init.characterCounter.service'
-import { initSelect } from './utils/init.select.service.js'
+
+import * as formService from './utils/form.service.js'
+
 /**
  * Run the application
  */
 const run = () => {
 
-    submit()
-    initSelect()
-    initCharacterCounter()
+    formService.initSelect()
+    formService.initCharacterCounter('textarea')
+    formService.toogleIconColor('textarea', 'textarea-icon')
+    formService.submitForm('survey-form', true)
 
 }
 
