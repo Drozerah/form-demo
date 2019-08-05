@@ -11,9 +11,9 @@ const run = () => {
 
     formService.initSelect()
     formService.initCharacterCounter('textarea')
-    formService.toogleIconColor('textarea', 'textarea-icon')
-    formService.submitForm('survey-form', true)
-
+    formService.validateForm("form")
+    formService.validateFormMessage("form")
+    formService.submitForm("form")
 }
 
 export { run }
