@@ -1,6 +1,7 @@
 // Colors
 $bg: #E7E7E7;
 $primary: #00e0a5;
+$inputFieldsPlaceHolders: #737373;
 
 // Overwrite Materialize styles
 
@@ -14,13 +15,13 @@ $primary: #00e0a5;
 $input-focus-color: $primary; // ~~ HACK
 
 /* Style Placeholder */
-$placeholder-text-color: #737373; // ~~ HACK
+$placeholder-text-color: $inputFieldsPlaceHolders; // ~~ HACK
 
 /* Dropdown */
 
 // Styling for input field select dropdown
-$dropdown-color: #737373; // ~~ HACK
+$dropdown-color: $inputFieldsPlaceHolders; // ~~ HACK
 
-
-/* Styling for checkboxes & Radio buttons */
-$secondary-color: #737373;
+/* Styling for checkboxes & radio buttons */
+// $secondary-color: $inputFieldsPlaceHolders;
+$secondary-color: #ec407a;
