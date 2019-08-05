@@ -10,6 +10,9 @@
 // import footer drozerah styles
 @import 'sass/drozerah';
 
+// html{
+//     border: 10px solid lime;
+// }
 
 html, body{
     margin: 0px;
@@ -17,16 +20,21 @@ html, body{
 }
 
 body{
-    height: 100vh;
+    height: 100%;
     display: grid;
     place-items: center;
-    background-color: $bg;
+    // background-color: $bg;
+    background-color: #333;
     font-family: monospace;
     color:#333;
+    box-sizing: border-box;
+    padding: 50px;
+    // border: 5px solid lime;
 }
 
-.wrapper{
+.wrapper{ // grid item first level
     width: 800px;
+    // margin: 50px 0;
     background-color: #fff;
     border-radius: 3px;
     padding: 25px 50px;
@@ -39,17 +47,20 @@ body{
     }
     h1{
         padding: 20px;
-        border: 2px solid $primary;
-        box-shadow: 5px 6px 0 $primary;
+        // border: 2px solid $primary;
+        // box-shadow: 5px 6px 0 $primary;
         font-size: 2em;
         color: inherit;
         margin: 0;
     }
     p{
-        margin: 50px 0 0 0;
+        margin: 40px 0 0 0;
     }
     main{
         background-color: #fff;
+    }
+    footer{
+        text-align: center;
     }
 }
 
@@ -57,30 +68,69 @@ form{
     padding: 20px;
 
     .input-field{
-        width: inherit; // ~~ HACK
-        display: flex; // ~~ HACK
-        flex-direction: row; // ~~ HACK
-        justify-content: flex-start; // ~~ HACK    
+        //width: inherit; // ~~ HACK
+        //display: flex; // ~~ HACK
+        //flex-direction: row; // ~~ HACK
+        //justify-content: flex-start; // ~~ HACK    
         div{
-          width: calc(100%/2);
+          //width: calc(100%);
         }
         & > label {
             color: inherit; // ~~ HACK
-            width: calc(100%/2); // ~~ HACK
+            // width: calc(100%); // ~~ HACK
             text-align: right; // ~~ HACK
             padding-right: 20px; // ~~ HACK
             transform: translateY(12px); // ~~ HACK
             // background-color: lime;
         }
-    }
-
-    button{
-        margin-top: 20px;
+        #textarea-label{
+            margin-bottom: 10px;
+        }     
+        #textarea-error{
+            color: $input-error-color;
+            display: none;
+            line-height: 24px;
+            vertical-align: super;
+            margin-left: 10px;
+        }
     }
 }
-footer{
-    margin-top: 50px;
-    text-align: center;
+
+// Form FlexBox
+
+form {
+    width: 100%;
+    .flex-container{
+
+        width: inherit;
+        display: flex;
+        flex-direction: row;
+
+        label[id$="label"], 
+        div[id$="label"],
+        div[id$="input"],
+        div[class="select-wrapper"]{
+            width: calc(100%/2);
+            // background-color: orange;
+        }
+        div[id*="group-label"]{
+            padding: 13px 20px 0 0;
+            text-align: right;
+            // background-color: lime;
+        }
+        #radio-group-input{
+            transform: translateX(-3px);
+        }            
+        input.select-dropdown {
+            color: $inputFieldsPlaceHolders;
+        }
+      
+    }
+    .flex-container:last-of-type{
+        
+        // background-color: lime;
+        margin-top: 40px;
+        justify-content: flex-end;
+        
+    }
 }
-
-
