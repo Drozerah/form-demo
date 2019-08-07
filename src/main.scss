@@ -45,22 +45,30 @@ body{
         padding: 0 5px 5px 0;
         text-align: right;
     }
-    h1{
-        padding: 20px;
-        // border: 2px solid $primary;
-        // box-shadow: 5px 6px 0 $primary;
-        font-size: 2em;
-        color: inherit;
-        margin: 0;
-    }
-    p{
-        margin: 40px 0 0 0;
+    header{
+        h1{
+            padding: 20px;
+            // border: 2px solid $primary;
+            // box-shadow: 5px 6px 0 $primary;
+            font-size: 2em;
+            color: inherit;
+            margin: 0;
+        }
     }
     main{
         background-color: #fff;
+        p{
+            margin: 20px 0 0 0;
+            padding: 20px 0 0 20px;
+        }
+        p,form{
+            background-color:inherit;
+            transition: background-color 0.5s ease;
+        }
     }
     footer{
         text-align: center;
+        margin: 20px 0 0 0;
     }
 }
 
@@ -105,7 +113,6 @@ form {
         width: inherit;
         display: flex;
         flex-direction: row;
-
         label[id$="label"], 
         div[id$="label"],
         div[id$="input"],
@@ -124,13 +131,40 @@ form {
         input.select-dropdown {
             color: $inputFieldsPlaceHolders;
         }
+        input[id="name"]{
+            text-transform: capitalize;
+        }
       
     }
     .flex-container:last-of-type{
         
         // background-color: lime;
-        margin-top: 40px;
+        margin: 40px 0 0 0;
         justify-content: flex-end;
         
+    }
+}
+
+
+main.ajax{
+    position: relative;
+    p, form{
+        background-color: #E7E7E7;
+        opacity: 0.5;
+    }
+    .preloader{
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        .circle{
+            z-index: 20;  
+        }
     }
 }

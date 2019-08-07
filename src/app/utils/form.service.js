@@ -1,4 +1,13 @@
 /**
+ * MODULES
+ */
+
+import * as filters from './filters.service.js'
+
+/**
+ * Materialize Components Initialization
+ */
+/**
  * Materialize Select Initialization
  * 
  * - Initialize all Materialize <select></select> elements
@@ -52,6 +61,34 @@ const initCharacterCounter = name => {
 }
 
 /**
+ * Materialize Modal Initialization
+ * 
+ * - Initialize all Materialize Modals elements
+ * 
+ * @doc https://materializecss.com/modals.html
+ * 
+ * @returns new FormSelect instance
+ * 
+ * @author Drozerah https://github.com/Drozerah
+ */
+const initModal = () => {
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const elems = document.querySelectorAll('.modal')
+
+        const options = {
+            dismissible: false, // Allow modal to be dismissed by keyboard or overlay click
+            preventScrolling: false // Prevent page from scrolling while modal is open
+        }
+
+        // var instances = M.FormSelect.init(elems)
+        return M.Modal.init(elems, options)
+    })
+
+}
+
+/**
  * Check if all inputs/texterea are valid then activate/disable the submit button
  * 
  * - if an input or the textarea is not valid then disable the form submit button
@@ -87,6 +124,7 @@ const validateForm = name => {
     // Callback function to execute when mutations are observed
     const callback = mutationsList => {
 
+
         for(let mutation of mutationsList) {
 
             if(mutation.target.name && mutation.target.name.match(/^(name|email|age|textarea)$/)){
@@ -115,7 +153,9 @@ const validateForm = name => {
     const observer = new MutationObserver(callback)
 
     // Start observing the target node for configured mutations
+    
     observer.observe(targetNode, config)
+ 
 }
 
 /**
@@ -187,11 +227,10 @@ const validateFormMessage = name => {
  */
 const submitForm = name => {
 
+    // get the form element
     const form = document.forms[name]
 
-    /**
-     * Disable Enter Key On Form except Textarea
-     */
+    // Disable Enter Key On Form Except Textarea
     form.addEventListener('keypress', (event) => {
 
         if (event.which == 13 && event.target.nodeName  != "TEXTAREA") {
@@ -201,79 +240,249 @@ const submitForm = name => {
     })
 
     /**
-     * Form Submission 
+     * FORM SUBMISSION EVENT
      */
     form.addEventListener('submit', (event) => {
 
         event.preventDefault()
 
-// console.log('===========')
-// console.log(form.elements)
-// console.log('===========')
-
-        /**
-         * CONFIRMATION
-         */
-
-        confirm("Confirmation?")
-
         /** 
          * WORKING WITH FORM DATA
         */
 
-// const result = `
-// name: ${form.elements.name.name}\n
-// value: ${form.elements.name.value}`
+        // capitalize name input
+        form.elements.name.value = filters.capitalize(form.elements.name.value)
 
-// alert(result)
+        /* FormData Object */
 
-//         // form data object
-//         const formData = new FormData(form)
-//         // get all form elements
-//         console.log(form.elements)
-//         // get first form element
-//         console.log(form.elements[0])
-//         // get first form element value
-//         console.log(`value: ${form.elements[0].value}`)
-//         // get first form element name
-//         console.log(`name attribut: ${form.elements[0].id}`)
-//         console.log(`name attribut: ${form.elements[0].name}`)
+        // create new formData Object
+        const formData = new FormData(form)
 
-//         // FormData.append()
-//         // appends a new value onto an existing key inside
-//         // @{mdn} https://developer.mozilla.org/en-US/docs/Web/API/FormData/append
-//         formData.append(form.elements[0].name, form.elements[0].value)
+        // create HTML ul element that will show the form user data 
+        const modalUserFormData = () => {
 
-//         // FormData.get()
-//         // returns the first value associated with a given key from within a FormData object
-//         // @{mdn} https://developer.mozilla.org/en-US/docs/Web/API/FormData/get
-//         console.log(formData.get(form.elements[0].name))
+            // modal user content element
+            const markup = document.getElementById('modal-user-form-data')
+            const array = []
 
-//         // FormData.entries()
-//         // going through all key/value pairs contained in the object
-//         // @{mdn} https://developer.mozilla.org/fr/docs/Web/API/FormData/entries 
-//         for(var pair of formData.entries()) {
-//             console.log(pair[0]+ ', '+ pair[1]); 
-//         }
+            // loop through the formData Object and create li HTML markup dynamically
+            for(let [key, value] of formData.entries()) {
 
+                // array.push(`<li>${key}: ${value}</li>`)
+                // push structured markup content to the array
+                array.push(`<li>${key}: ${value === null || value === undefined || value == `` ? `none` : value}</li>`)
+            }
+            // create ul HTML markup then inject structured markup content from iteration
+            const ul = `<ul>${array.map( elem => elem ).join('')}</ul>`
+            // append user data to the modal user content element
+            markup.innerHTML = ul 
+        }
 
         /**
-         * FORM RESET
-        */
+         * ASK FOR CONFIRMATION WITH MODAL
+         */
 
-        // remove focus state on any input fields
-        const inputs = document.querySelectorAll('input')
-        inputs.forEach( input => input.blur())
+        // get modal element
+        const modal1 = document.getElementById('modal1')
+        // get modal plugin instance for modal1
+        const modal1Instance = M.Modal.getInstance(modal1)
 
-        // resize textarea height
-        form.textarea.style.height = "21px"
+        /* MODAL METHODS OPEN & CLOSE */
+
+        // OPEN MODAL 
+        modal1Instance.open(
+            // lauch callback when modal1 is opened
+            modalOpenCallback() // Hoisting
+        )
+
+        // callback when modal1 is opened
+        function modalOpenCallback(){ 
+
+            console.warn(`modal ${modal1Instance.id} is opened!`) 
+            
+            // Show user data into modal1
+            modalUserFormData()
+            
+            /** MODAL EVENTS */
+
+            /*** ABORTED CONFIRMATION */
+
+            // get confirmation close btn
+            const modal_abort_btn = document.getElementById('modal-abort')
+
+            // CLOSE MODAL
+            // modal refuse confirmation button click event
+            modal_abort_btn.addEventListener('click', (e) => {
+
+                e.preventDefault()
+
+                console.warn('confirmation abortted!')
+
+                // empty user data in modale HTML markup
+                document.getElementById('modal-user-form-data').innerHTML = ""
+                // close modal1
+                modal1Instance.close()
+
+                console.warn(`modal ${modal1Instance.id} is closed!`)
+            })
+
+            /** MODAL EVENTS */
+
+            /*** CONFIRMATION CONFIRMED (close modal & add overlay spinner) */
+
+            // get confirmation btn
+            const modal_confirm_btn = document.getElementById('modal-confirm')
+
+            // modal accept confirmation button click event
+            modal_confirm_btn.addEventListener('click', (e) => {
+
+                e.preventDefault()
+
+                console.warn('confirmation accepted!')
+
+                // close modal1
+                modal1Instance.close()
+
+                console.warn(`modal ${modal1Instance.id} is closed!`)
+
+                /* ADD OVERLAY SPINNER TO FORM (prepare AJAX POST request to server)*/ 
+
+                // get main markup
+                const main = form.parentNode 
+                // add class ajax to it
+                main.classList.add('ajax')
+
+                if (main.classList.contains("ajax")) {
+
+                    /**
+                     * INJECT SPINNER INTO THE DOM WITHIN A PRELOADER ELEMENT
+                     */
+                    // create preloader HTML element 
+                    const preloader = document.createElement('div')
+                    // add class to preloader element
+                    preloader.classList = 'preloader'
+                    // spinner markup
+                    const spinner = `<div class="preloader-wrapper big active"><div class="spinner-layer spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>`
+                    // add inject spinner to preloader element
+                    preloader.innerHTML = spinner
+                    // inject preloader into main markup
+                    main.appendChild(preloader)
+
+                    console.warn('spinner is on!') 
     
-        // remove existing Character Counter inner Text
-        const counterEl = form.textarea.M_CharacterCounter.counterEl
-        counterEl.innerText = ""
-        
-        // reset the form
-        form.reset()
+                    /**
+                     * SIMULATE REQUEST
+                     */
+                    // console.warn('simulate AJAX request!')
+
+                    // #
+                    // setTimeout(() => {
+                    //     // remove class ajax
+                    //     main.classList.remove('ajax')
+                    //     // hide preloader
+                    //     preloader.setAttribute("style", "display: none")
+                    //     // remove preloader
+                    //     preloader.remove()
+                    //     // 
+                    //     console.warn('spinner is removed!')
+                    // },1500)
+
+                    // #TODO add on submit only
+                    // #ISSUE => the append method in not accepted by netlify server
+                    // // get date
+                    // const date = moment(Date.now()).format('MM-DD-YYYY - h:mm:ss a')
+                    // // append date
+                    // formData.append("date", date)
+                    // // append location
+                    // formData.append("posted from", window.location.origin)
+
+                    console.warn('before request!')
+
+                    /**
+                     * MAKE FETCH POST REQUEST 
+                     */
+                   
+                    const cleanSpinnerModal = () => {
+                        /**
+                         * REMOVE PRELOADER
+                        */
+                        // remove class ajax
+                        main.classList.remove('ajax')
+                        // hide preloader
+                        preloader.setAttribute("style", "display: none")
+                        // remove preloader from the DOM
+                        preloader.remove()
+                        // 
+                        console.warn('spinner is removed!')
+
+                        /**
+                         * CLEAN MODAL
+                        */
+                        // empty user data in modale HTML markup
+                        document.getElementById('modal-user-form-data').innerHTML = ""
+                        console.warn('modal is empty!')
+                    } 
+
+                    /** HANDLING REQUEST ERROR */
+                    const handleErrors = (response) => {
+                        if (!response.ok) {                            
+                            console.error(`Request failed!`)
+                            throw Error(response.statusText)
+                        }
+                        return response
+                    }
+                    
+
+                    /** MAKE REQUEST */
+                    fetch(form.getAttribute('action'), {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/x-www-form-urlencoded;charset=UTF-8',
+                          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                        },
+                        body: new URLSearchParams(formData).toString()
+                    })
+                    .then(handleErrors) /* ERROR */
+                    .then( response => { /* SUCCESS */ 
+
+                        console.warn('succes POST request!')
+
+                        //* REMOVE PRELOADER & CLEAN MODAL
+                        cleanSpinnerModal()
+
+                        /**
+                         * CLEAN FORM
+                        */
+                        // remove focus state on any input fields
+                        const inputs = document.querySelectorAll('input')
+                        inputs.forEach( input => input.blur() )
+
+                        // resize textarea height to original size
+                        form.textarea.style.height = "21px"
+
+                        // remove existing Characters Counter inner Text on textarea
+                        const counterEl = form.textarea.M_CharacterCounter.counterEl
+                        counterEl.innerText = ""
+
+                        /**
+                         * FORM RESET
+                        */               
+                        // reset the form
+                        form.reset()
+                        console.warn('The form is reset!')
+
+                    })
+                    .catch(error => { /* ERROR */
+                        console.error(`Error stack: ${error.stack}`)
+                        console.warn('request aborted!')
+                        //* REMOVE PRELOADER & CLEAN MODAL
+                        cleanSpinnerModal()
+                    })
+                }
+
+            })
+        }
+
     })   
 }
 
@@ -283,6 +492,7 @@ const submitForm = name => {
 export { 
     initSelect,
     initCharacterCounter,
+    initModal,
     validateForm,
     validateFormMessage,
     submitForm

@@ -11,6 +11,7 @@ const run = () => {
 
     formService.initSelect()
     formService.initCharacterCounter('textarea')
+    formService.initModal()
     formService.validateForm("form")
     formService.validateFormMessage("form")
     formService.submitForm("form")
