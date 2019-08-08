@@ -7,10 +7,6 @@ $inputFieldsPlaceHolders: #737373;
 
 /* Text input */
 
-// CSS template for modifying input fields border color
-// @{link} https://stackoverflow.com/a/56501028/9370788
-// @{link} https://stackoverflow.com/a/45880493/9370788
-
 // Styling for input field wrapper
 $input-focus-color: $primary; // ~~ HACK
 
@@ -23,5 +19,4 @@ $placeholder-text-color: $inputFieldsPlaceHolders; // ~~ HACK
 $dropdown-color: $inputFieldsPlaceHolders; // ~~ HACK
 
 /* Styling for checkboxes & radio buttons */
-// $secondary-color: $inputFieldsPlaceHolders;
 $secondary-color: #ec407a;

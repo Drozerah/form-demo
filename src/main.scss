@@ -10,6 +10,9 @@
 // import footer drozerah styles
 @import 'sass/drozerah';
 
+// using Materialize color function
+$bg-body: color("grey", "darken-4");
+
 // html{
 //     border: 10px solid lime;
 // }
@@ -23,8 +26,7 @@ body{
     height: 100%;
     display: grid;
     place-items: center;
-    // background-color: $bg;
-    background-color: #333;
+    background-color: $bg-body; // M
     font-family: monospace;
     color:#333;
     box-sizing: border-box;
