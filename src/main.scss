@@ -9,6 +9,8 @@
 @import 'app/materialize-hacks/sass/vendor';
 // import footer drozerah styles
 @import 'sass/drozerah';
+// import alerts
+@import 'sass/alerts';
 
 // using Materialize color function
 $bg-body: color("grey", "darken-4");
@@ -146,7 +148,6 @@ form {
         
     }
 }
-
 
 main.ajax{
     position: relative;

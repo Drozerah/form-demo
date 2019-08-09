@@ -36,5 +36,7 @@ module.exports  = [
     'invalid',
     'valid',
     'hiddendiv',
-    'common'
+    'common',
+    'alert-danger',
+    'alert-success'
 ]

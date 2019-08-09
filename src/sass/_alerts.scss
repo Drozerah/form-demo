@@ -1,0 +1,88 @@
+/*  MATERIALIZE ALERTS */
+
+// Using Materialize-css _color-variables.scss function */
+
+// alert default styles
+$alert-color:                   color("grey", "darken-4");
+$alert-backgroud-color:         color("grey", "lighten-3");
+$alert-border:                  color("grey", "lighten-1");
+
+// alert success styles
+$alert-success-color:           color("light-green", "darken-4");
+$alert-success-backgroud-color: color("light-green", "lighten-4");
+$alert-success-border:          color("light-green", "lighten-4");
+
+// alert danger styles
+$alert-danger-color:            color("red", "darken-4");
+$alert-danger-backgroud-color:  color("red", "lighten-4");
+$alert-danger-border:           color("red", "lighten-4");
+
+// alert warning styles
+$alert-warning-color:           color("yellow", "darken-4");
+$alert-warning-backgroud-color: color("yellow", "lighten-3");
+$alert-warning-border:          color("yellow", "darken-1");
+
+// alert info styles
+$alert-info-color:              color("blue", "darken-4");
+$alert-info-backgroud-color:    color("blue", "lighten-3");
+$alert-info-border:             color("blue", "lighten-1");
+
+// styling alert mixin
+@mixin alert-style(
+    $border: $alert-border,
+    $backgroud-color:$alert-backgroud-color,
+    $color: $alert-color
+    ) {
+    border: 1px solid $border; // default
+    color: $color; // default
+    background-color: $backgroud-color; // default
+    padding: 15px;
+    font-size: 1em;
+    font-weight: normal;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin: 15px 20px;
+    text-align: center;
+}
+
+// alert classes
+.alert{
+    @include alert-style(
+        $alert-border,
+        $alert-backgroud-color, 
+        $alert-color
+    );
+}
+
+.alert-success{
+    @extend .alert;
+    @include alert-style(
+        $alert-success-border,
+        $alert-success-backgroud-color, 
+        $alert-success-color
+    );
+}
+.alert-danger{
+    @extend .alert;
+    @include alert-style(
+        $alert-danger-border,
+        $alert-danger-backgroud-color,
+        $alert-danger-color
+    );
+}
+.alert-warning{
+    @extend .alert;
+    @include alert-style(
+        $alert-warning-border,
+        $alert-warning-backgroud-color, 
+        $alert-warning-color
+    );
+}
+.alert-info{
+    @extend .alert;
+    @include alert-style(
+        $alert-info-border,
+        $alert-info-backgroud-color,
+        $alert-info-color
+    );
+}

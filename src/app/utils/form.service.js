@@ -402,6 +402,7 @@ const submitForm = name => {
                      * MAKE FETCH POST REQUEST 
                      */
                    
+                    /** CLEAN SPINNER */
                     const cleanSpinnerModal = () => {
                         /**
                          * REMOVE PRELOADER
@@ -421,11 +422,62 @@ const submitForm = name => {
                         // empty user data in modale HTML markup
                         document.getElementById('modal-user-form-data').innerHTML = ""
                         console.warn('modal is empty!')
-                    } 
+                    }
+                    
+                    /** 
+                     * HANDLING FEEDBACK ALERT MESSAGES
+                     * 
+                     * - insert alerts messages into the DOM according tho the fetch() object response success or error
+                     * 
+                     * @param object the fetch method object response
+                     * @returns alert message injected into the DOM
+                     */
+                    const alertMessage = (res) => {
+                        // remove existing alert element
+                        if(document.getElementsByClassName('alert')[0]){
+                            document.getElementsByClassName('alert')[0].remove()
+                        }
+                        
+                        // create new alert element
+                        const alertElem = document.createElement('div')
+                        alertElem.classList.add('alert')
+                        // add role attribute
+                        alertElem.setAttribute('role', 'alert')
+                        
+                        if (!res.ok) {
+
+                            // add class
+                            alertElem.classList.add('alert-danger')
+                            
+                            // add text content
+                            alertElem.innerText = `${res.stack}`
+                                
+                        }
+                        else {
+                            
+                            // add class
+                            alertElem.classList.add('alert-success')
+                            // add text content
+                            alertElem.innerText = `SUCCESS: ${res.ok} - status ${res.status}`
+               
+                        }
+                        // inject .alert-danger into main element as first child
+                        const main = document.querySelector('main') // parent element
+                        const descriptionChild = main.firstChild // existing first child
+                        main.insertBefore(alertElem, descriptionChild) // insert befor first child
+
+                        console.warn('alert message inserted into the DOM!')
+                    }
 
                     /** HANDLING REQUEST ERROR */
                     const handleErrors = (response) => {
-                        if (!response.ok) {                            
+
+                        if (!response.ok) {
+                            
+                            //** WORKING WITH ERROR RESPONSE */
+
+                            alertMessage(response)
+
                             console.error(`Request failed!`)
                             throw Error(response.statusText)
                         }
@@ -446,6 +498,8 @@ const submitForm = name => {
                     .then( response => { /* SUCCESS */ 
 
                         console.warn('succes POST request!')
+
+                        alertMessage(response)
 
                         //* REMOVE PRELOADER & CLEAN MODAL
                         cleanSpinnerModal()
@@ -473,6 +527,7 @@ const submitForm = name => {
 
                     })
                     .catch(error => { /* ERROR */
+                        alertMessage(error)
                         console.error(`Error stack: ${error.stack}`)
                         console.warn('request aborted!')
                         //* REMOVE PRELOADER & CLEAN MODAL
