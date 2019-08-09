@@ -1,5 +1,5 @@
-const common = require("./webpack.common.js")
-const merge = require("webpack-merge")
+const common = require('./webpack.common.js')
+const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
@@ -7,6 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const autoprefixer = require('autoprefixer')
 const purgecss = require('@fullhuman/postcss-purgecss')
+const purgeCssWhitelist = require('./purgecss-whitelist')
 
 module.exports = merge(common, {
     mode: "production", // Minify webpack JS bundle
@@ -66,44 +67,9 @@ module.exports = merge(common, {
                                         'grid': true, // Activate CSS Grid polyfill (IE 10-11)
                                         'overrideBrowserslist': ['> 1%', 'last 2 versions']
                                     }),
-                                    new purgecss({
+                                    new purgecss({ // Purge CSS
                                         content: ['./src/**/*.html'],
-                                        whitelist: [
-                                            'select-wrapper',
-                                            'select-dropdown',
-                                            'dropdown-trigger',
-                                            'dropdown-content',
-                                            'multiple-select-dropdown',
-                                            'M_Dropdown',
-                                            'selected',
-                                            'select-options',
-                                            'caret',
-                                            'dropdown',
-                                            'ajax',
-                                            'preloader',
-                                            'preloader-wrapper',
-                                            'big',
-                                            'active',
-                                            'spinner-layer',
-                                            'spinner-red-only',
-                                            'spinnerContainer',
-                                            'spinner-red',
-                                            'gap-patch',
-                                            'right-spin',
-                                            'left-spin',
-                                            'cooldown',
-                                            'circle-clipper',
-                                            'left',
-                                            'circle',
-                                            'gap-patch',
-                                            'right',
-                                            'keyboard-focused',
-                                            'validate',
-                                            'invalid',
-                                            'valid',
-                                            'hiddendiv',
-                                            'common'
-                                        ]
+                                        whitelist: [...purgeCssWhitelist] // whitelist
                                     })
                                 ]
                             }
