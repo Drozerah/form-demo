@@ -79,7 +79,7 @@ const initModal = () => {
 
         const options = {
             dismissible: false, // Allow modal to be dismissed by keyboard or overlay click
-            preventScrolling: false // Prevent page from scrolling while modal is open
+            preventScrolling: true // Prevent page from scrolling while modal is open
         }
 
         // var instances = M.FormSelect.init(elems)
@@ -450,7 +450,8 @@ const submitForm = name => {
                             alertElem.classList.add('alert-danger')
                             
                             // add text content
-                            alertElem.innerText = `${res.stack}`
+                            // alertElem.innerText = `ERROR ${res.stack}`
+                            alertElem.innerText = `${res}`
                                 
                         }
                         else {
