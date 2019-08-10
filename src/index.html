@@ -16,21 +16,21 @@
             <p id="description">Paragraph of form description</p>
             <form id="survey-form" name="form" method="POST" action="/" data-netlify="true">
                 <div class="input-field flex-container">
-                    <label id="name-label" for="name" >* Name:</label>
+                    <label id="name-label" for="name"><span>*</span> Name:</label>
                     <div id="name-input">
                         <input id="name" placeholder="Enter your name" type="text" class="validate" name="name" required>
                         <span class="helper-text" data-error="This field is required!" data-success="right!"></span>              
                     </div>
                 </div>
                 <div class="input-field flex-container">
-                    <label id="email-label" for="email" >* Email:</label>
+                    <label id="email-label" for="email"><span>*</span> Email:</label>
                     <div id="email-input">
                         <input id="email" placeholder="Enter your Email" type="email" class="validate" name="email" required>
                         <span class="helper-text" data-error="Email invalid!" data-success="right!"></span>
                     </div>
                 </div>
                 <div class="input-field flex-container">
-                    <label id="number-label" for="number" >* Age:</label>
+                    <label id="number-label" for="number"><span>*</span> Age:</label>
                     <div id="number-input">
                         <input id="number" placeholder="Age" type="number" min="5" max="100" class="validate" name="age" required>
                         <span class="helper-text" data-error="This field is required!" data-success="right!"></span>
@@ -72,13 +72,13 @@
                         <li>
                             <label>
                                 <input type="checkbox" name="checkboxes" class="filled-in" value="selection A" />
-                                <span>selection A</span>
+                                <span>Selection&nbsp;A</span>
                             </label>
                         </li>
                         <li>
                             <label>
                                 <input type="checkbox" name="checkboxes" class="filled-in" value="selection B" />
-                                <span>selection B</span>
+                                <span>Selection&nbsp;B</span>
                             </label>
                         </li>
                     </ul>
