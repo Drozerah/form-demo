@@ -41,8 +41,12 @@ $alert-info-border:             color("blue", "lighten-1");
     font-weight: normal;
     text-transform: uppercase;
     border-radius: 3px;
-    margin: 15px 20px;
+    // margin: 15px 20px;
     text-align: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 // alert classes

@@ -11,37 +11,39 @@
 @import 'sass/drozerah';
 // import alerts
 @import 'sass/alerts';
+// import responsive
+@import 'sass/responsive';
 
 // using Materialize color function
 $bg-body: color("grey", "darken-4");
+$color-red: color('red', 'base');
 
 // html{
 //     border: 10px solid lime;
 // }
 
 html, body{
-    margin: 0px;
-    padding: 0px;
+    margin: 0px;  
 }
 
 body{
     height: 100%;
-    display: grid;
+    display: grid; 
     place-items: center;
     background-color: $bg-body; // M
     font-family: monospace;
     color:#333;
     box-sizing: border-box;
-    padding: 50px;
+    // padding: 50px; // ~~responsive
     // border: 5px solid lime;
 }
 
 .wrapper{ // grid item first level
-    width: 800px;
+    // width: 800px; // ~~responsive
     // margin: 50px 0;
     background-color: #fff;
     border-radius: 3px;
-    padding: 25px 50px;
+    // padding: 25px 50px; // ~~responsive
     &::before{
         content: "Drozerah freeCodeCamp Work";
         display: inline-block;
@@ -61,13 +63,16 @@ body{
     }
     main{
         background-color: #fff;
+        margin-top: 25px;
         p{
-            margin: 20px 0 0 0;
-            padding: 20px 0 0 20px;
+            margin: initial;
+            padding: 0 0 0 20px;
         }
-        p,form{
-            background-color:inherit;
+        p,form,.alert{
             transition: background-color 0.5s ease;
+        }
+        .alert{
+            margin-bottom: 40px;
         }
     }
     footer{
@@ -83,10 +88,7 @@ form{
         //width: inherit; // ~~ HACK
         //display: flex; // ~~ HACK
         //flex-direction: row; // ~~ HACK
-        //justify-content: flex-start; // ~~ HACK    
-        div{
-          //width: calc(100%);
-        }
+        //justify-content: flex-start; // ~~ HACK
         & > label {
             color: inherit; // ~~ HACK
             // width: calc(100%); // ~~ HACK
@@ -94,6 +96,9 @@ form{
             padding-right: 20px; // ~~ HACK
             transform: translateY(12px); // ~~ HACK
             // background-color: lime;
+            span{
+                color: $color-red;
+            }
         }
         #textarea-label{
             margin-bottom: 10px;
@@ -115,38 +120,42 @@ form {
     .flex-container{
 
         width: inherit;
-        display: flex;
-        flex-direction: row;
-        label[id$="label"], 
-        div[id$="label"],
-        div[id$="input"],
-        div[class="select-wrapper"]{
-            width: calc(100%/2);
-            // background-color: orange;
-        }
-        div[id*="group-label"]{
-            padding: 13px 20px 0 0;
-            text-align: right;
-            // background-color: lime;
-        }
-        #radio-group-input{
-            transform: translateX(-3px);
-        }            
+        // display: flex; // ~~responsive
+        // flex-direction: row; // ~~responsive
+
+        // label[id$="label"], // ~~responsive
+        // div[id$="label"],
+        // div[id$="input"],
+        // div[class="select-wrapper"]{
+        //     width: calc(100%/2);
+        //     // background-color: orange;
+        // }
+
+        // div[id*="group-label"]{ // ~~responsive
+        //     padding: 13px 20px 0 0;
+        //     text-align: right;
+        //     // background-color: lime;
+        // }
+        // #radio-group-input{
+        //     transform: translateX(-3px); // ~~responsive
+        // }            
         input.select-dropdown {
             color: $inputFieldsPlaceHolders;
         }
         input[id="name"]{
             text-transform: capitalize;
         }
-      
+        ul[id*="group-input"] label span{
+            color: $label-text-color;
+            font-size: 16px;
+        }
     }
-    .flex-container:last-of-type{
+    // .flex-container:last-of-type{ // ~~responsive
         
-        // background-color: lime;
-        margin: 40px 0 0 0;
-        justify-content: flex-end;
+    //     margin: 40px 0 0 0;
+    //     justify-content: flex-end;
         
-    }
+    // }
 }
 
 main.ajax{
@@ -171,3 +180,28 @@ main.ajax{
         }
     }
 }
+
+
+.modal {
+
+    .modal-content{
+        padding: 24px 24px 0px 24px;
+    }
+    
+    .modal-footer {
+        padding: 0px 24px 0px 24px;
+        margin-bottom: 10px;
+        display: flex;
+        // justify-content: space-around; // ~~responsive
+    
+        // a[id^="modal"]{
+        //     display: block;
+        //     width: calc(90%/2);
+        //     text-align: center;
+        // }
+    }
+}
+
+
+
+

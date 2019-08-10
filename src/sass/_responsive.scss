@@ -1,0 +1,135 @@
+/* RESPONSIVE */
+/*
+* MEDIA QUERIES
+*/
+// MOBILE
+@media screen and (max-width: 600px) {
+    body{
+        padding: 20px;
+        .hiddendiv{
+            width: inherit;
+        }
+    }
+    .wrapper {
+        width: 95%;
+        padding: 25px;
+    }
+    form{
+
+       .flex-container{
+            display: block;
+            label[id$="label"], 
+            div[id$="label"],
+            div[id$="input"],
+            div[class="select-wrapper"]{
+                width: calc(100%);
+            }
+        }
+        .flex-container:last-of-type{
+        
+            margin: 40px 0 0 0;
+            button{
+                width: 100%;
+            }           
+        }
+    }
+    .modal{
+        .modal-footer{
+            justify-content: space-around;
+
+            a[id^="modal"]{
+                display: block;
+                width: calc(90%/2);
+                text-align: center;
+            }
+        }
+    }
+}
+// MOBILE + TABLET
+@media screen and (max-width: 992px) {
+
+    #radio-group-input{
+        transform: translateX(-3px);
+    }
+    #checkbox-group-input{
+        transform: none;
+    }
+    #radio-group-input , #checkbox-group-input{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        li{
+            width: calc(100%/4);
+        }
+    } 
+}
+
+// TABLET & UP
+@media screen and (min-width: 601px) {
+    body{
+        padding: 50px;
+    }
+    .wrapper {
+        width: 95%;
+        padding: 25px;
+    }
+    form{
+
+        .flex-container:last-of-type{
+            display: flex;
+            margin: 40px 0 0 0;
+            justify-content: flex-end;
+            
+        }
+    }
+    .modal{
+        .modal-footer{
+            justify-content: flex-end;
+            a{
+                display: block;
+                width: 100px;
+                text-align: center;
+            }
+            #modal-abort{
+                margin-right: 24px;
+            }
+        }
+    }
+}
+
+// TABLET
+@media screen and (min-width: 601px) and (max-width: 992px) {
+    .wrapper {
+        width: 80%;
+    }
+}
+// DESKTOP & UP
+@media screen and (min-width: 993px) {
+    .wrapper {
+        width: 800px;
+    }
+    form{
+
+        .flex-container{
+            display: flex;
+            label[id$="label"], 
+            div[id$="label"],
+            div[id$="input"],
+            div[class="select-wrapper"]{
+                width: calc(100%/2);
+            }
+            #radio-group-input{
+                transform: translateX(-3px);
+            } 
+        } 
+    }
+}
+// DESKTOP
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+
+
+}
+// LARGE DESKTOP 
+@media screen and (min-width: 1201px) {
+
+}
