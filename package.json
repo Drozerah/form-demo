@@ -1,17 +1,17 @@
 {
-  "name": "servey-form-fcc",
+  "name": "form-demo",
   "version": "0.1.0",
-  "description": "Survey form freeCodeCamp work",
+  "description": "form-demo is a freeCodeCamp work",
   "private": true,
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js && npm run build:after",
-    "build:after": "start dist/index.html"
+    "build": "webpack --config webpack.prod.js",
+    "open": "start dist/index.html"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Drozerah/servey-form.git"
+    "url": "https://github.com/Drozerah/form-demo.git"
   },
   "keywords": [],
   "author": {
