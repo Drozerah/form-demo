@@ -1,5 +1,7 @@
 # Form Demo
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8f28dc73-6504-4674-9452-1559084ca72f/deploy-status)](https://app.netlify.com/sites/form-demo/deploys)
+
 > The "Form Demo" page is my work for the "Build a Survey Form" challenge for the freeCodeCamp responsive web design certification
 
 - Standards:
