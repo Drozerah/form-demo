@@ -4,6 +4,8 @@
 
 > The "Form Demo" page is my work for the "Build a Survey Form" challenge for the freeCodeCamp responsive web design certification
 
+![form demo image](https://raw.githubusercontent.com/Drozerah/freeCodeCamp-work/master/Responsive_Web_Design_Certification/Responsive_Web_Design_Projects/Build_a_Servey_Form/img/form-demo.png)
+
 - Standards:
     - JavaScript ES6
     - HTML5 
